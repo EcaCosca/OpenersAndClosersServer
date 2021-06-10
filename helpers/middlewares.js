@@ -13,10 +13,19 @@ exports.isNotLoggedIn = (req, res, next) => {
 };
 
 exports.validationLogin = (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  if (!email || !password){
+  if (!username || !password){
     next(createError(400));
   } 
   else next();
 };
+
+
+
+// Above exporting is same as what we did before:
+// exports = {
+//   isLoggedIn,
+//   isNotLoggedIn,
+//   validationLogin,
+// }
