@@ -5,20 +5,21 @@ const productSchema = new Schema({
   category: {type: String, unique: true},
   series: {type: String},
   model: {type: String},
-  img:
-  imgTecnica:
+  img: {type: String},
+  imgTecnica: {type: String},
   pistillo:
   fijo:
   ajustable:
   profunidad:
   ajuste:
-  imgTecnicaPestillo:
+  imgTecnicaPestillo: {type: String},
   bobina:
   tapa:
   functionresitenciaDeCierre
   fuerzaDinamicaDeCierre:
-  durabilidadGarantizada
-  temperaturaDeUso:
+  durabilidadGarantizada:
+  minTemperaturaDeUso:
+  maxTemperaturaDeUso:
   resistenciaAlFuego:
   certificadoSegunNorma:
   proteccionIP:
@@ -31,12 +32,12 @@ const productSchema = new Schema({
   voltajeDC:
   funcionamientoContinuo:
   tensionNominal:
-  protectorDeSobretension
+  protectorDeSobretension:
   precargaMaximaDelPestilloAC:
   precargaMaximaDelPestilloDC:
-  consumoDeCorrienteAC
-  consumoDeCorrienteDC
-  imgImpulsoElectrico:
+  consumoDeCorrienteAC:
+  consumoDeCorrienteDC:
+  imgImpulsoElectrico: {type: String},
 
 
 
