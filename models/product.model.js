@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const electricosSchema = require('../schemas/electricos.schema')
 
 const productSchema = new Schema({
-  category: {type: String, unique: true},
+  category: {type: String},
   series: {type: String},
-  model: {type: String},
+  model: {type: String, unique: true},
   descripcion: { type: String},
-  img: {type: String},
+  imgProducto: {type: String},
   imgTecnica: {type: String},
   manualInstructivo: {type: String},
   ancho: {type: Number},
