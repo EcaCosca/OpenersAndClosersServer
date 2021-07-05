@@ -21,8 +21,8 @@ router.post("/upload", uploader.single("img"), (req, res, next) => {
   });
 
 
-// POST '/exit/exitpoint'
-router.post('/exitpoint', (req, res, next) => {
+// POST '/product'
+router.post('/product', (req, res, next) => {
     // const userId = req.session.currentUser._id;
     const {
         category,
@@ -37,7 +37,7 @@ router.post('/exitpoint', (req, res, next) => {
         alto
     } = req.body;
     
-    // Create a new exit point
+    // Create a new product
     Product.create({
         category,
         series,
@@ -50,10 +50,10 @@ router.post('/exitpoint', (req, res, next) => {
         largo,
         alto
     })
-    .then((createdExit) => {
+    .then((createdProduct) => {
         res
         .status(201) // Created
-        .json(createdExit); // res.send() 
+        .json(createdProduct); // res.send() 
     })
     .catch((err) => {
         next(createError(err));  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
@@ -61,16 +61,16 @@ router.post('/exitpoint', (req, res, next) => {
 })
 
 
-// GET '/exit/exitpoint'
-router.get('/exitpoint', (req, res, next) => {
+// GET '/product'
+router.get('/product', (req, res, next) => {
     
     
     Product.find()
     .populate('users')
-    .then((allExits) => {
+    .then((allProducts) => {
         res
         .status(200) // Found
-        .json(allExits); // res.send()
+        .json(allProducts); // res.send()
     })
     .catch((err) => {
         res
@@ -79,24 +79,24 @@ router.get('/exitpoint', (req, res, next) => {
     })
 })
 
-// GET '/exit/exitpoint'
-router.get('/exitpoint/:id', (req, res, next) => {
-    const exitId = req.params.id;
+// GET '/product'
+router.get('/product/:id', (req, res, next) => {
+    const productId = req.params.id;
     
-    if (!mongoose.Types.ObjectId.isValid(exitId)) {
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
         res
         .status(400) //  Bad Request
         .json({ message: "Specified id is not valid" });
         return;
     }
     
-    Product.findById(exitId)
+    Product.findById(productId)
     
-    .then((exit) => {
+    .then((product) => {
         
         res
         .status(200) // Found
-        .json(exit); // res.send()
+        .json(product); // res.send()
     })
     .catch((err) => {
         res
@@ -106,10 +106,10 @@ router.get('/exitpoint/:id', (req, res, next) => {
 })
 
 
-// PUT '/exit/exitpoint'
-router.put('/exitpoint/:id', (req, res, next) => {
+// PUT '/product'
+router.put('/product/:id', (req, res, next) => {
     const exitId = req.params.id;
-    console.log('exitId', exitId)
+    console.log('productId', productId)
     const {
         category,
         series,
@@ -123,8 +123,8 @@ router.put('/exitpoint/:id', (req, res, next) => {
         alto
     } = req.body;
     console.log('req.body', req.body)
-    // Create a new exit point
-    Product.findByIdAndUpdate(exitId, {
+    // Create a new product
+    Product.findByIdAndUpdate(productId, {
         category,
         series,
         model,
@@ -137,11 +137,11 @@ router.put('/exitpoint/:id', (req, res, next) => {
         alto
     }, {new:true} )
     
-    .then((updatedExit) => {
-        console.log('updatedExit', updatedExit)
+    .then((updatedProduct) => {
+        console.log('updatedProduct', updatedProduct)
             res
             .status(200)
-            .json(updatedExit);
+            .json(updatedProduct);
             
         })
         .catch((err) => {
@@ -153,14 +153,14 @@ router.put('/exitpoint/:id', (req, res, next) => {
         
     })
     
-    router.delete('/exitpoint/:id', (req, res, next) => {
+    router.delete('/product/:id', (req, res, next) => {
         const exitId = req.params.id;
         
-        Product.findByIdAndRemove(exitId)
+        Product.findByIdAndRemove(productId)
         .then( () => {
             res
             .status(200) // Found
-            .json(`Document ${exitId} was removed successfully.`) // res.send()
+            .json(`Document ${productId} was removed successfully.`) // res.send()
         }
         )
         .catch((err) => {
