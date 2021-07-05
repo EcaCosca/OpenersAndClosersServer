@@ -15,7 +15,7 @@ const productSchema = new Schema({
   largo: {type: Number},
   alto: {type: Number},
 
-  fichaTecnica: { type: [ electricosSchema ], required: true }
+  // fichaTecnica: { type: [ electricosSchema ], required: true }
 }, {
   timestamps: {
     createdAt: 'created_at',
